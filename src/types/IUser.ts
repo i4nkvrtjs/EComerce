@@ -1,7 +1,8 @@
-import type { Rol } from "./Rol";
+import type { Rol } from "./Rol"
 
 export interface IUser {
-  email: string;
-  loggedIn: boolean;
-  role: Rol;
+	email: string
+	password: string
+	role: Rol
+	loggedIn: boolean
 }

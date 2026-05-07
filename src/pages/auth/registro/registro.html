@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="/src/styles/global.css">
+	<link rel="stylesheet" href="/src/styles/components.css">
+	<link rel="stylesheet" href="/src/styles/pages/login.css">
+
+	<title>Registro</title>
 </head>
 
 <body>
-    <h1>Hola desde el registro</h1>
+
+	<div class="form-container card">
+
+		<h1>Registro</h1>
+
+		<form id="form">
+
+			<div class="form-group">
+				<label>Email</label>
+
+				<input
+					class="input"
+					type="email"
+					id="email"
+					required
+				>
+			</div>
+
+			<div class="form-group">
+				<label>Contraseña</label>
+
+				<input
+					class="input"
+					type="password"
+					id="password"
+					required
+				>
+			</div>
+
+			<button
+				type="submit"
+				class="btn-primary"
+			>
+				Registrarse
+			</button>
+
+		</form>
+
+	</div>
+
+	<script type="module" src="./registro.ts"></script>
+
 </body>
 
 </html>

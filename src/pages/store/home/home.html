@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/src/styles/global.css">
+	<link rel="stylesheet" href="/src/styles/components.css">
+	<link rel="stylesheet" href="/src/styles/pages/store-home.css">
+
+	<title>FoodStore</title>
+</head>
+
+<body>
+
+	<header class="navbar">
+		<h1 class="logo">Food Store</h1>
+
+		<button
+			id="goCart"
+			class="btn-secondary"
+		>
+			Ir al carrito
+		</button>
+	</header>
+
+	<main class="store-container">
+
+		<input
+			type="text"
+			id="search"
+			class="input"
+			placeholder="Buscar productos..."
+		>
+
+		<div id="categories"></div>
+
+		<div id="products"></div>
+
+	</main>
+
+	<script type="module" src="./home.ts"></script>
+
+</body>
+
+</html>

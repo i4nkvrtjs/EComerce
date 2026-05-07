@@ -1,33 +1,42 @@
-import type { IUser } from "../types/IUser";
-import type { Rol } from "../types/Rol";
-import { getUSer, removeUser } from "./localStorage";
-import { navigate } from "./navigate";
+import type { IUser } from "../types/IUser"
+import type { Rol } from "../types/Rol"
+
+import {
+	getUSer,
+	removeUser
+} from "./localStorage"
+
+import { navigate } from "./navigate"
 
 export const checkAuhtUser = (
-  redireccion1: string,
-  redireccion2: string,
-  rol: Rol
+	redirectIfNotLogged: string,
+	redirectIfWrongRole: string,
+	role: Rol
 ) => {
-  console.log("comienzo de checkeo");
+	const user = getUSer()
 
-  const user = getUSer();
+	if (!user) {
+		navigate(redirectIfNotLogged)
+		return
+	}
 
-  if (!user) {
-    console.log("no existe en local");
-    navigate(redireccion1);
-    return;
-  } else {
-    console.log("existe pero no tiene el rol necesario");
+	const parsedUser: IUser = JSON.parse(user)
 
-    const parseUser: IUser = JSON.parse(user);
-    if (parseUser.role !== rol) {
-      navigate(redireccion2);
-      return;
-    }
-  }
-};
+	// validar sesión
+	if (!parsedUser.loggedIn) {
+		navigate(redirectIfNotLogged)
+		return
+	}
+
+	// validar rol
+	if (parsedUser.role !== role) {
+		navigate(redirectIfWrongRole)
+		return
+	}
+}
 
 export const logout = () => {
-  removeUser();
-  navigate("/src/pages/auth/login/login.html");
-};
+	removeUser()
+
+	navigate("/src/pages/auth/login/login.html")
+}

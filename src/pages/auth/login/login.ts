@@ -1,30 +1,55 @@
-import type { IUser } from "../../../types/IUser";
-import type { Rol } from "../../../types/Rol";
-import { navigate } from "../../../utils/navigate";
+import {
+	getUsers,
+	saveUser
+} from "../../../utils/localStorage"
 
-const form = document.getElementById("form") as HTMLFormElement;
-const inputEmail = document.getElementById("email") as HTMLInputElement;
-//const inputPassword = document.getElementById("password") as HTMLInputElement;
-const selectRol = document.getElementById("rol") as HTMLSelectElement;
+import { navigate } from "../../../utils/navigate"
+
+const form = document.getElementById("form") as HTMLFormElement
+
+const inputEmail =
+	document.getElementById("email") as HTMLInputElement
+
+const inputPassword =
+	document.getElementById("password") as HTMLInputElement
+
+const goRegister =
+	document.getElementById("goRegister") as HTMLButtonElement
+
+// navegación a registro
+goRegister.addEventListener("click", () => {
+	navigate("/src/pages/auth/registro/registro.html")
+})
 
 form.addEventListener("submit", (e: SubmitEvent) => {
-  e.preventDefault();
-  const valueEmail = inputEmail.value;
-  //const valuePassword = inputPassword.value;
-  const valueRol = selectRol.value as Rol;
+	e.preventDefault()
 
-  if (valueRol === "admin") {
-    navigate("/src/pages/admin/home/home.html");
-  } else if (valueRol === "client") {
-    navigate("/src/pages/client/home/home.html");
-  }
+	const email = inputEmail.value.trim()
+	const password = inputPassword.value.trim()
 
-  const user: IUser = {
-    email: valueEmail,
-    role: valueRol,
-    loggedIn: true,
-  };
+	const users = getUsers()
 
-  const parseUser = JSON.stringify(user);
-  localStorage.setItem("userData", parseUser);
-});
+	const user = users.find(u =>
+		u.email === email &&
+		u.password === password
+	)
+
+	if (!user) {
+		alert("Email o contraseña incorrectos")
+		return
+	}
+
+	// guardar sesión
+	saveUser({
+		...user,
+		loggedIn: true
+	})
+
+	// redirección según rol
+	if (user.role === "admin") {
+		navigate("/src/pages/admin/home/home.html")
+	}
+	else {
+		navigate("/src/pages/store/home/home.html")
+	}
+})

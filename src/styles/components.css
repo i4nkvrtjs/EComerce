@@ -1,0 +1,40 @@
+button {
+	padding: 10px 14px;
+	border: none;
+	border-radius: var(--radius);
+	cursor: pointer;
+	font-weight: bold;
+	transition: 0.2s;
+}
+
+.btn-primary {
+	background-color: var(--primary);
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+	background-color: var(--secondary);
+	color: white;
+}
+
+.btn-secondary:hover {
+	background-color: var(--secondary-dark);
+}
+
+.card {
+	background-color: var(--white);
+	border-radius: var(--radius);
+	padding: 16px;
+	box-shadow: var(--shadow);
+}
+
+.input {
+	width: 100%;
+	padding: 10px;
+	border-radius: var(--radius);
+	border: 1px solid var(--border);
+}

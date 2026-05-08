@@ -1,63 +1,100 @@
-import { PRODUCTS, getCategories } from "../../../utils/data"
+import type { Product } from "../../../types/Product"
+
+import {
+	PRODUCTS,
+	getCategories
+} from "../../../utils/data"
+
 import { addToCart } from "../../../utils/cart"
+
 import { checkAuhtUser } from "../../../utils/auth"
+
 import { navigate } from "../../../utils/navigate"
+
+import {
+	initializeTheme,
+	toggleTheme
+} from "../../../utils/theme"
 
 checkAuhtUser(
 	"/src/pages/auth/login/login.html",
-	"/src/pages/client/home/home.html",
+
+	// si intenta entrar un admin
+	"/src/pages/admin/home/home.html",
+
 	"client"
 )
 
-const productsContainer = document.getElementById("products")!
-const searchInput = document.getElementById("search") as HTMLInputElement
-const categoriesContainer = document.getElementById("categories")!
+const productsContainer =
+	document.getElementById("products") as HTMLDivElement
+
+const searchInput =
+	document.getElementById("search") as HTMLInputElement
+
+const categoriesContainer =
+	document.getElementById("categories") as HTMLDivElement
 
 let currentCategory: number | "all" = "all"
 
-function renderProducts(list = PRODUCTS) {
+const renderProducts = (products: Product[]) => {
+
 	productsContainer.innerHTML = ""
 
-	if (list.length === 0) {
-		productsContainer.innerHTML = "<p>No hay resultados</p>"
-		return
-	}
+	products.forEach(product => {
 
-	list.forEach(p => {
-		const div = document.createElement("div")
-		div.classList.add("card")
-		div.classList.add("product-card")
-		
-		div.innerHTML = `
-			<h3>${p.nombre}</h3>
-			<p>$${p.precio}</p>
-			<p>${p.descripcion}</p>
-			<button ${!p.disponible ? "disabled" : ""}>
-				${p.disponible ? "Agregar" : "Sin stock"}
+		const card = document.createElement("div")
+
+		card.classList.add("card")
+		card.classList.add("product-card")
+
+		card.innerHTML = `
+			<img
+				src="/assets/${product.imagen}"
+				alt="${product.nombre}"
+			>
+
+			<h3>${product.nombre}</h3>
+
+			<p>${product.descripcion}</p>
+
+			<p>$${product.precio}</p>
+
+			<button class="btn-primary add-btn">
+				Agregar al carrito
 			</button>
 		`
 
-		if (p.disponible) {
-			div.querySelector("button")!.addEventListener("click", () => {
-				addToCart(p)
-				alert("Agregado al carrito")
-			})
-		}
+		const button = card.querySelector(".add-btn") as HTMLButtonElement
 
-		productsContainer.appendChild(div)
+		button.addEventListener("click", () => {
+
+			addToCart(product)
+
+			alert("Producto agregado al carrito")
+		})
+
+		productsContainer.appendChild(card)
 	})
 }
 
 function filterProducts() {
-	const text = searchInput.value.toLowerCase()
 
-	let filtered = PRODUCTS.filter(p =>
-		p.nombre.toLowerCase().includes(text)
+	const text =
+		searchInput.value.toLowerCase()
+
+	let filtered = PRODUCTS.filter(product =>
+		product.nombre
+			.toLowerCase()
+			.includes(text)
 	)
 
 	if (currentCategory !== "all") {
-		filtered = filtered.filter(p =>
-			p.categorias.some(c => c.id === currentCategory)
+
+		filtered = filtered.filter(product =>
+			product.categorias.some(
+				category =>
+					category.id === currentCategory
+			)
 		)
 	}
 
@@ -65,34 +102,71 @@ function filterProducts() {
 }
 
 function renderCategories() {
+
 	const categories = getCategories()
 
+	categoriesContainer.innerHTML = ""
+
 	const allBtn = document.createElement("button")
+
 	allBtn.textContent = "Todos"
+
+	allBtn.classList.add("btn-secondary")
+
 	allBtn.addEventListener("click", () => {
+
 		currentCategory = "all"
+
 		filterProducts()
 	})
+
 	categoriesContainer.appendChild(allBtn)
 
-	categories.forEach(cat => {
-		const btn = document.createElement("button")
-		btn.textContent = cat.nombre
+	categories.forEach(category => {
 
-		btn.addEventListener("click", () => {
-			currentCategory = cat.id
+		const button = document.createElement("button")
+
+		button.textContent = category.nombre
+
+		button.classList.add("btn-secondary")
+
+		button.addEventListener("click", () => {
+
+			currentCategory = category.id
+
 			filterProducts()
 		})
 
-		categoriesContainer.appendChild(btn)
+		categoriesContainer.appendChild(button)
 	})
 }
 
-searchInput.addEventListener("input", filterProducts)
+searchInput.addEventListener(
+	"input",
+	filterProducts
+)
 
-document.getElementById("goCart")?.addEventListener("click", () => {
+const goCartButton =
+	document.getElementById("goCart") as HTMLButtonElement
+
+goCartButton.addEventListener("click", () => {
 	navigate("/src/pages/store/cart/cart.html")
 })
 
+/* DARK MODE */
+
+const darkModeButton =
+	document.getElementById("darkModeBtn") as HTMLButtonElement
+
+initializeTheme()
+
+darkModeButton.addEventListener("click", () => {
+
+	toggleTheme()
+})
+
+/* INIT */
+
 renderCategories()
-renderProducts()
+
+renderProducts(PRODUCTS)

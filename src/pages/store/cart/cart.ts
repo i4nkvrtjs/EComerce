@@ -9,6 +9,11 @@ import {
 
 import { navigate } from "../../../utils/navigate"
 
+import {
+	initializeTheme,
+	toggleTheme
+} from "../../../utils/theme"
+
 const cartContainer =
 	document.getElementById("cart") as HTMLDivElement
 
@@ -48,48 +53,74 @@ const renderCart = () => {
 		div.classList.add("cart-item")
 
 		div.innerHTML = `
-			<div class="cart-info">
-				<h3>${item.product.nombre}</h3>
+	<img
+		src="/assets/${item.product.imagen}"
+		alt="${item.product.nombre}"
+		style="
+			width:120px;
+			height:120px;
+			object-fit:cover;
+			border-radius:12px
+		"
+	>
 
-				<p>
-					Precio unitario:
-					$${item.product.precio}
-				</p>
-				<p>
-					Subtotal:
-					$${item.product.precio * item.quantity}
-				</p>
-			</div>
-			<div class="cart-actions">
+	<div class="cart-info">
 
-				<div class="quantity-container">
+		<h3>${item.product.nombre}</h3>
 
-					<button
-						class="quantity-btn decrease-btn"
-						data-id="${item.product.id}"
-					>
-						-
-					</button>
+		<p>
+			Precio unitario:
+			$${item.product.precio}
+		</p>
 
-					<span class="quantity-display">
-						${item.quantity}
-					</span>
+		<p>
+			Subtotal:
+			$${item.product.precio * item.quantity}
+		</p>
 
-					<button
-						class="quantity-btn increase-btn"
-						data-id="${item.product.id}"
-					>
-						+
-					</button>
-				</div>
-				<button
-					class="remove-btn"
-					data-id="${item.product.id}"
-				>
-					Quitar
-				</button>
-			</div>
-		`
+	</div>
+
+	<div class="cart-actions">
+
+		<div class="quantity-container">
+
+			<button
+				class="
+					quantity-btn
+					decrease-btn
+					btn-secondary
+				"
+				data-id="${item.product.id}"
+			>
+				-
+			</button>
+
+			<span class="quantity-display">
+				${item.quantity}
+			</span>
+
+			<button
+				class="
+					quantity-btn
+					increase-btn
+					btn-primary
+				"
+				data-id="${item.product.id}"
+			>
+				+
+			</button>
+
+		</div>
+
+		<button
+			class="btn-danger remove-btn"
+			data-id="${item.product.id}"
+		>
+			Quitar
+		</button>
+
+	</div>
+`
 
 		cartContainer.appendChild(div)
 	})
@@ -143,5 +174,25 @@ const renderCart = () => {
 		})
 	})
 }
+
+const darkModeButton =
+	document.createElement("button")
+
+darkModeButton.textContent =
+	"🌙 Dark Mode"
+
+darkModeButton.classList.add("btn-secondary")
+
+const navbar =
+	document.querySelector(".navbar")
+
+navbar?.appendChild(darkModeButton)
+
+initializeTheme()
+
+darkModeButton.addEventListener("click", () => {
+
+	toggleTheme()
+})
 
 renderCart()

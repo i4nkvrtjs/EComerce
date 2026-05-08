@@ -1,40 +1,68 @@
 button {
-	padding: 10px 14px;
+	padding: 12px 18px;
 	border: none;
 	border-radius: var(--radius);
 	cursor: pointer;
 	font-weight: bold;
 	transition: 0.2s;
+	margin: 6px;
 }
 
 .btn-primary {
-	background-color: var(--primary);
+	background-color: #2ecc71;
 	color: white;
 }
 
 .btn-primary:hover {
-	background-color: var(--primary-dark);
+	background-color: #27ae60;
 }
 
 .btn-secondary {
-	background-color: var(--secondary);
+	background-color: #3498db;
 	color: white;
 }
 
 .btn-secondary:hover {
-	background-color: var(--secondary-dark);
+	background-color: #2980b9;
+}
+
+.btn-danger {
+	background-color: #e74c3c;
+	color: white;
+}
+
+.btn-danger:hover {
+	background-color: #c0392b;
 }
 
 .card {
 	background-color: var(--white);
 	border-radius: var(--radius);
-	padding: 16px;
+	padding: 18px;
 	box-shadow: var(--shadow);
 }
 
 .input {
 	width: 100%;
-	padding: 10px;
+	padding: 12px;
 	border-radius: var(--radius);
 	border: 1px solid var(--border);
+	margin-top: 6px;
+}
+
+/* DARK MODE */
+
+body.dark {
+	background-color: #121212;
+	color: #f1f1f1;
+}
+
+body.dark .card {
+	background-color: #1e1e1e;
+}
+
+body.dark .input {
+	background-color: #2a2a2a;
+	color: white;
+	border: 1px solid #444;
 }

@@ -15,7 +15,10 @@ body {
 
 h1 {
 	margin-bottom: 20px;
-	text-align: center;
+}
+
+.logo {
+	text-align: left;
 }
 
 a {

@@ -14,6 +14,9 @@ import {
 	toggleTheme
 } from "../../../utils/theme"
 
+import { logout } from "../../../utils/auth"
+
+
 const cartContainer =
 	document.getElementById("cart") as HTMLDivElement
 
@@ -176,23 +179,27 @@ const renderCart = () => {
 }
 
 const darkModeButton =
-	document.createElement("button")
-
-darkModeButton.textContent =
-	"🌙 Dark Mode"
-
-darkModeButton.classList.add("btn-secondary")
-
-const navbar =
-	document.querySelector(".navbar")
-
-navbar?.appendChild(darkModeButton)
-
-initializeTheme()
+	document.getElementById("darkModeBtn") as HTMLButtonElement
 
 darkModeButton.addEventListener("click", () => {
 
 	toggleTheme()
 })
+
+const backStoreButton = document.getElementById("backStore") as HTMLButtonElement
+
+backStoreButton.addEventListener("click", () => {
+
+	navigate("/src/pages/store/home/home.html")
+})
+
+const logoutButton = document.getElementById("logoutBtn") as HTMLButtonElement
+
+logoutButton.addEventListener("click", () => {
+
+	logout()
+})
+
+initializeTheme()
 
 renderCart()

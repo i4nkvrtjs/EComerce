@@ -2,10 +2,10 @@ const THEME_KEY = "darkMode"
 
 export const initializeTheme = () => {
 
-	const isDark =
+	const savedTheme =
 		localStorage.getItem(THEME_KEY)
 
-	if (isDark === "true") {
+	if (savedTheme === "true") {
 
 		document.body.classList.add("dark")
 	}

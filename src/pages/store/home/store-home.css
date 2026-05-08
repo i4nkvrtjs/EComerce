@@ -65,6 +65,20 @@
 	flex-direction: column;
 
 	gap: 10px;
+
+	height: 100%;
+}
+
+.product-card button {
+	margin-top: auto;
+}
+
+.product-card h3 {
+	min-height: 48px;
+
+	display: flex;
+
+	align-items: center;
 }
 
 /* IMAGE */

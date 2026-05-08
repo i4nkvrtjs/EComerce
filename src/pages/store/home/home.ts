@@ -7,7 +7,10 @@ import {
 
 import { addToCart } from "../../../utils/cart"
 
-import { checkAuhtUser } from "../../../utils/auth"
+import {
+	checkAuhtUser,
+	logout
+} from "../../../utils/auth"
 
 import { navigate } from "../../../utils/navigate"
 
@@ -15,6 +18,8 @@ import {
 	initializeTheme,
 	toggleTheme
 } from "../../../utils/theme"
+
+
 
 checkAuhtUser(
 	"/src/pages/auth/login/login.html",
@@ -153,6 +158,16 @@ goCartButton.addEventListener("click", () => {
 	navigate("/src/pages/store/cart/cart.html")
 })
 
+/* Logout */
+
+const logoutButton =
+	document.getElementById("logoutBtn") as HTMLButtonElement
+
+logoutButton.addEventListener("click", () => {
+
+	logout()
+})
+
 /* DARK MODE */
 
 const darkModeButton =
@@ -166,6 +181,8 @@ darkModeButton.addEventListener("click", () => {
 })
 
 /* INIT */
+
+initializeTheme()
 
 renderCategories()
 

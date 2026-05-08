@@ -19,8 +19,6 @@ import {
 	toggleTheme
 } from "../../../utils/theme"
 
-
-
 checkAuhtUser(
 	"/src/pages/auth/login/login.html",
 
@@ -30,14 +28,11 @@ checkAuhtUser(
 	"client"
 )
 
-const productsContainer =
-	document.getElementById("products") as HTMLDivElement
+const productsContainer = document.getElementById("products") as HTMLDivElement
 
-const searchInput =
-	document.getElementById("search") as HTMLInputElement
+const searchInput = document.getElementById("search") as HTMLInputElement
 
-const categoriesContainer =
-	document.getElementById("categories") as HTMLDivElement
+const categoriesContainer = document.getElementById("categories") as HTMLDivElement
 
 let currentCategory: number | "all" = "all"
 
@@ -151,8 +146,7 @@ searchInput.addEventListener(
 	filterProducts
 )
 
-const goCartButton =
-	document.getElementById("goCart") as HTMLButtonElement
+const goCartButton = document.getElementById("goCart") as HTMLButtonElement
 
 goCartButton.addEventListener("click", () => {
 	navigate("/src/pages/store/cart/cart.html")
@@ -160,18 +154,15 @@ goCartButton.addEventListener("click", () => {
 
 /* Logout */
 
-const logoutButton =
-	document.getElementById("logoutBtn") as HTMLButtonElement
+const logoutButton = document.getElementById("logoutBtn") as HTMLButtonElement
 
 logoutButton.addEventListener("click", () => {
-
 	logout()
 })
 
 /* DARK MODE */
 
-const darkModeButton =
-	document.getElementById("darkModeBtn") as HTMLButtonElement
+const darkModeButton = document.getElementById("darkModeBtn") as HTMLButtonElement
 
 initializeTheme()
 

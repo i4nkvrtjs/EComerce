@@ -17,14 +17,11 @@ import {
 import { logout } from "../../../utils/auth"
 
 
-const cartContainer =
-	document.getElementById("cart") as HTMLDivElement
+const cartContainer = document.getElementById("cart") as HTMLDivElement
 
-const totalContainer =
-	document.getElementById("total") as HTMLHeadingElement
+const totalContainer = document.getElementById("total") as HTMLHeadingElement
 
-const backStore =
-	document.getElementById("backStore") as HTMLButtonElement
+const backStore = document.getElementById("backStore") as HTMLButtonElement
 
 backStore.addEventListener("click", () => {
 	navigate("/src/pages/store/home/home.html")
@@ -131,8 +128,7 @@ const renderCart = () => {
 	totalContainer.textContent = `Total: $${total}`
 
 	// Agregar event listeners después de renderizar todos los items
-	const increaseButtons =
-		document.querySelectorAll(".increase-btn")
+	const increaseButtons = document.querySelectorAll(".increase-btn")
 
 	increaseButtons.forEach(button => {
 		// Remover event listeners anteriores para evitar duplicados
@@ -147,8 +143,7 @@ const renderCart = () => {
 		})
 	})
 
-	const decreaseButtons =
-		document.querySelectorAll(".decrease-btn")
+	const decreaseButtons = document.querySelectorAll(".decrease-btn")
 
 	decreaseButtons.forEach(button => {
 		button.removeEventListener("click", () => {})
@@ -162,8 +157,7 @@ const renderCart = () => {
 		})
 	})
 
-	const removeButtons =
-		document.querySelectorAll(".remove-btn")
+	const removeButtons = document.querySelectorAll(".remove-btn")
 
 	removeButtons.forEach(button => {
 		button.removeEventListener("click", () => {})
@@ -178,8 +172,7 @@ const renderCart = () => {
 	})
 }
 
-const darkModeButton =
-	document.getElementById("darkModeBtn") as HTMLButtonElement
+const darkModeButton = document.getElementById("darkModeBtn") as HTMLButtonElement
 
 darkModeButton.addEventListener("click", () => {
 

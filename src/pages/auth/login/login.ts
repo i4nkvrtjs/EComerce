@@ -7,14 +7,11 @@ import { navigate } from "../../../utils/navigate"
 
 const form = document.getElementById("form") as HTMLFormElement
 
-const inputEmail =
-	document.getElementById("email") as HTMLInputElement
+const inputEmail = document.getElementById("email") as HTMLInputElement
 
-const inputPassword =
-	document.getElementById("password") as HTMLInputElement
+const inputPassword = document.getElementById("password") as HTMLInputElement
 
-const goRegister =
-	document.getElementById("goRegister") as HTMLButtonElement
+const goRegister = document.getElementById("goRegister") as HTMLButtonElement
 
 // navegación a registro
 goRegister.addEventListener("click", () => {

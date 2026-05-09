@@ -8,7 +8,7 @@ import {
 import { addToCart } from "../../../utils/cart"
 
 import {
-	checkAuhtUser,
+	checkAuthUser,
 	logout
 } from "../../../utils/auth"
 
@@ -19,7 +19,7 @@ import {
 	toggleTheme
 } from "../../../utils/theme"
 
-checkAuhtUser(
+checkAuthUser(
 	"/src/pages/auth/login/login.html",
 
 	// si intenta entrar un admin

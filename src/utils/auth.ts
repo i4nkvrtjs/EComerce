@@ -8,7 +8,7 @@ import {
 
 import { navigate } from "./navigate"
 
-export const checkAuhtUser = (
+export const checkAuthUser = (
 	redirectIfNotLogged: string,
 	redirectIfWrongRole: string,
 	role: Rol

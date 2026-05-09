@@ -148,3 +148,195 @@ src/
 │
 └── public/
     └── assets/
+```
+---
+
+# Instalación y ejecución
+
+## Requisitos previos
+
+Antes de ejecutar el proyecto es necesario tener instalado:
+
+- Node.js
+- pnpm
+
+---
+
+## Instalar Node.js
+
+Descargar desde:
+
+https://nodejs.org/
+
+Se recomienda instalar la versión LTS.
+
+---
+
+## Instalar pnpm
+
+Luego de instalar Node.js, ejecutar:
+
+```bash
+npm install -g pnpm
+```
+
+---
+
+# Clonar el proyecto
+
+```bash
+git clone <url-del-repositorio>
+```
+
+---
+
+# Instalar dependencias
+
+Dentro de la carpeta del proyecto ejecutar:
+
+```bash
+pnpm install
+```
+
+---
+
+# Ejecutar servidor de desarrollo
+
+```bash
+pnpm dev
+```
+
+---
+
+# Abrir aplicación
+
+Vite mostrará una URL similar a:
+
+```txt
+http://localhost:5173
+```
+
+Abrir esa dirección en el navegador.
+
+---
+
+# Usuario administrador por defecto
+
+La aplicación genera un administrador manualmente al iniciar.
+
+Credenciales:
+
+```txt
+Email: admin@admin.com
+Password: admin
+```
+
+---
+
+# Consideraciones importantes
+
+## Persistencia
+
+La aplicación utiliza `localStorage`.
+
+Por este motivo:
+- el carrito persiste entre recargas
+- la sesión permanece iniciada
+- el dark mode se mantiene
+
+---
+
+## Reiniciar datos
+
+Para reiniciar completamente la aplicación:
+
+1. Abrir DevTools del navegador
+2. Ir a Application
+3. Ir a Local Storage
+4. Limpiar los datos almacenados
+
+---
+
+## Imágenes
+
+Las imágenes de productos deben ubicarse en:
+
+```txt
+src/assets/
+```
+
+---
+
+## Navegación
+
+La aplicación utiliza navegación frontend mediante:
+
+```ts
+window.location.href
+```
+
+adaptada al entorno Vite.
+
+---
+
+## Responsive Design
+
+La interfaz fue diseñada para:
+- desktop
+- tablet
+- mobile
+
+utilizando:
+- Flexbox
+- CSS Grid
+- Media Queries
+
+---
+
+# Tecnologías utilizadas
+
+- HTML5
+- CSS3
+- TypeScript
+- Vite
+- localStorage
+- Flexbox
+- CSS Grid
+
+---
+
+# Decisiones técnicas
+
+## Arquitectura modular
+
+La aplicación fue dividida en módulos para separar responsabilidades:
+
+- pages → vistas
+- utils → lógica reutilizable
+- styles → estilos
+- types → interfaces TypeScript
+
+---
+
+## Uso de TypeScript
+
+Se utilizó tipado fuerte mediante interfaces para:
+
+- prevenir errores
+- mejorar mantenibilidad
+- facilitar escalabilidad
+
+---
+
+## Renderizado dinámico
+
+Los productos y categorías se generan dinámicamente manipulando el DOM desde TypeScript.
+
+---
+
+## Seguridad frontend
+
+Se implementó:
+- protección de rutas
+- validación de roles
+- restricción de creación de administradores
